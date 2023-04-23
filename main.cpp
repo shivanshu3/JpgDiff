@@ -33,15 +33,9 @@ int main(int argc, char** argv)
     }
 
     std::cout << "Processing images..." << std::endl;
+    Image resultImage = DiffImages(*image1, *image2);
 
-    for (const auto& row : *image1)
-    {
-        for (const auto& pixel : row)
-        {
-            std::cout << "{" << (unsigned int)pixel.red << "," << (unsigned int)pixel.green << "," << (unsigned int)pixel.blue << "} ";
-        }
-        std::cout << "\n";
-    }
+    PrintImage(resultImage);
 
     return 0;
 }
