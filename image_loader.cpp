@@ -114,6 +114,7 @@ std::optional<Image> read_JPEG_file (const char* filename)
         ((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
 
     Image image{};
+    image.reserve(cinfo.output_height);
 
     /* Step 6: while (scan lines remain to be read) */
     /*           jpeg_read_scanlines(...); */
@@ -129,6 +130,7 @@ std::optional<Image> read_JPEG_file (const char* filename)
         (void) jpeg_read_scanlines(&cinfo, buffer, 1);
 
         std::vector<Pixel> row;
+        row.reserve(cinfo.output_width);
 
         for (int i = 0; i < cinfo.output_width * 3; i+=3)
         {

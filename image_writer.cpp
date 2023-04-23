@@ -79,10 +79,12 @@ bool WritePngFile(const std::string& fileName, const Image& image)
     auto width = static_cast<unsigned int>(image[0].size());
 
     std::vector<std::vector<png_byte>> pngPixelRows;
+    pngPixelRows.reserve(height);
 
     for (const auto& row : image)
     {
         std::vector<png_byte> pngPixelBytes;
+        pngPixelBytes.reserve(width * 3);
         for (const auto& pixel : row)
         {
             pngPixelBytes.push_back(pixel.red);
@@ -94,6 +96,7 @@ bool WritePngFile(const std::string& fileName, const Image& image)
     }
 
     std::vector<png_bytep> rowPtrs;
+    rowPtrs.reserve(height);
     for (const auto& pngPixelRow : pngPixelRows)
     {
         png_byte* rowPtr = const_cast<png_byte*>(pngPixelRow.data());

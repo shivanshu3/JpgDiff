@@ -62,13 +62,16 @@ Image DiffImages(const Image& image1, const Image& image2)
         throw "One of the images have empty row";
     }
 
-    Image result;
     std::size_t numRows = image1.size();
     std::size_t numCols = image1[0].size();
+
+    Image result;
+    result.reserve(numRows);
 
     for (std::size_t rowIndex = 0; rowIndex < numRows; ++rowIndex)
     {
         std::vector<Pixel> resultRow;
+        resultRow.reserve(numCols);
 
         for (std::size_t colIndex = 0; colIndex < numCols; ++colIndex)
         {
