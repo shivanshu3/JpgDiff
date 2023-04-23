@@ -39,8 +39,6 @@ int main(int argc, char** argv)
     std::cout << "Processing images..." << std::endl;
     Image resultImage = DiffImages(*image1, *image2);
 
-    PrintImage(resultImage);
-
     std::cout << "Writing image..." << std::endl;
     if (!WritePngFile(outFilePath, resultImage))
     {
